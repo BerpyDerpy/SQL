@@ -29,7 +29,7 @@ class Product(Base):
     # so each Product knows its Category
     category = relationship('Category', back_populates='products')
 
-
+Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)
 #  Category instances
 c1 = Category(category_name='Electronics')
@@ -48,4 +48,4 @@ session.commit()
 products = session.query(Product).all()
 
 for prod in products:
-    print(f"Product: {prod.product_name} | Price: ${prod.price:.2f} | Category: {prod.category.category_name}")
+    print(f"Product: {prod.product_name} | Price: ₹{prod.price:.2f} | Category: {prod.category.category_name}")
